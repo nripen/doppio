@@ -1,0 +1,11 @@
+<ul class="nav nav-list nav-stacked">
+  <li><%= link_to 'Summary', '#' %></li>
+  <li class="divider"></li>
+  <li><%= link_to 'Issue Types', project_issue_types_path(@project) %>
+  <li><%= link_to 'Workflow', '#' %></li>
+  <li class="divider"></li>
+  <li><%= link_to 'Test', substantive_content_path, :remote => true %></li>
+  <li><%= link_to 'I donot know', projects_donot_know_path, :remote => true %></li>
+  <li><%= link_to 'Issue Types', projects_issues_path, :remote => true %></li>
+  <li><a href="#">Contact</a></li>
+</ul>

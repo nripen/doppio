@@ -1,0 +1,34 @@
+
+<%= render 'shared/project_info' %>
+<div class="row">
+  <div class="span2">
+    <%= render 'shared/project_left_menu' %>
+  </div>
+  <div id="content" class="span8">
+  	<table class="table table-striped">
+  	  <thead>
+  		<tr>
+  	  	  <th>Issue Type</th>
+  	  	  <th>Description</th>
+      	  <th>Operations</th>
+  		</tr>
+  	  </thead>
+  	  <tbody>
+  		<% @issue_types.each do |issue| %>
+  	  	<tr>
+  		  <td><%= issue.name %></td>
+  		  <td></td>
+  		  <td>
+  		  <%= link_to 'Edit', edit_project_issue_type_path(@project, issue), :class => 'btn btn-mini', :remote => true, :data => { :toggle => 'modal', :target => '#edit_issue_type_modal' } %>
+          <%= link_to 'Destroy', project_issue_type_path(@project, issue), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          </td>
+  	  	</tr>
+    	<% end %>
+  	  </tbody>
+	</table>
+	<%= link_to 'Add Issue Type', new_project_issue_type_path, :class => 'btn btn-primary', :remote => true, :data => { :toggle => 'modal', :target => '#new_issue_type_modal' } %>
+
+	<div id="new_issue_type_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> </div>
+  <div id="edit_issue_type_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> </div>
+  </div>
+</div>

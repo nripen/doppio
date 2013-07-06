@@ -1,0 +1,14 @@
+<% provide(:title, 'Projects') %>
+<h1>Add a new project</h1>
+<div class="row">
+  <div class="span6 offset3">
+  	<%= form_for(@project) do |f| %>
+  	  <%= render 'shared/error_messages', object: f.object %>
+  	  <%= f.label :name %>
+  	  <%= f.text_field :name %>
+  	  <%= f.label 'Project Lead' %>
+  	  <%= collection_select(:project, :user_id, User.all, :id, :name, :prompt => true) %>
+  	  <%= f.submit 'Submit', class: "btn btn-large btn-primary" %>
+  	<% end %>
+  </div>
+</div>

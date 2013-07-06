@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+  	<tr>
+  	  <th>Issue Type</th>
+  	  <th>Description</th>
+      <th>Operations</th>
+  	</tr>
+  </thead>
+  <tbody>
+  	<% @issue_types.each do |issue| %>
+  	  <tr>
+  		<td><%= issue.name %></td>
+  		<td></td>
+  		<td>
+  		  <%= link_to 'Edit', '#', :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', '#', :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+  	  </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add Issue Type', '#', :class => 'btn btn-primary' %>
+
+<%= link_to 'My modal', new_project_issue_path, :class => 'btn', :remote => true, :data => { :toggle => 'modal', :target => '#new_issue_modal' } %>
+
+<div id="new_issue_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
