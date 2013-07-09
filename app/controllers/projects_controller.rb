@@ -7,11 +7,16 @@ class ProjectsController < ApplicationController
 
 
   def index
-  	@projects = Project.all
+    if current_user.admin?
+  	   @projects = Project.all
+     end
   end
 
   def new
   	@project = Project.new
+    respond_to do |format|               
+      format.js
+    end
   end
 
   def create
