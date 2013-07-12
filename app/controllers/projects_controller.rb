@@ -4,29 +4,37 @@ class ProjectsController < ApplicationController
 
   include ProjectsHelper
   
-
-
   def index
     if current_user.admin?
   	   @projects = Project.all
-     end
+       @project = Project.new
+    else 
+    end
   end
 
   def new
   	@project = Project.new
-    respond_to do |format|               
-      format.js
-    end
+    #respond_to do |format|               
+     # format.js
+    #end
   end
 
   def create
-  	@project = Project.new(params[:project])
-  	if @project.save
-      populate_issue_types @project
-  		redirect_to @project
-  	else
-  		render 'new'
-  	end
+    #@project = Project.new(params[:project])
+
+    @project = current_user.projects.create(params[:project])
+    # binding.pry
+    respond_to do |format|
+      if @project.errors.count <= 0
+        populate_issue_types @project
+        format.html { redirect_to @project, notice: 'Project Created!' }
+        format.json { render json: @project, status: :created, location: @project }
+      else
+        puts 'hell'
+        format.html { render 'new' }
+        format.json { render json: @project.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
@@ -36,6 +44,9 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    respond_to do |format|               
+      format.js
+    end
   end
   
   def update
@@ -44,9 +55,9 @@ class ProjectsController < ApplicationController
       # Handle a successful update
       flash[:success] = "Project updated."
       # sign_in @user
-      redirect_to @project
+      redirect_to :back
     else
-      render 'edit'
+      redirect_to :back
     end
   end
   

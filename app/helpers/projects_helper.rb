@@ -1,7 +1,7 @@
 module ProjectsHelper
   ISSUETYPES = ['Bug', 'Improvement', 'New Feature']
   def projectlead_for(project)
-	User.find(project.user_id).name
+	User.find(project.project_lead).name
   end
 
 

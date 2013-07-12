@@ -8,7 +8,7 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
  	  <%= f.label 'Project Lead' %>
-    <%= collection_select(:project, :user_id, User.all, :id, :name, :prompt => true) %>
+    <%= collection_select(:project, :project_lead, User.all, :id, :name, :prompt => true) %>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn">Close</a>

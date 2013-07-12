@@ -41,7 +41,7 @@ class IssueTypesController < ApplicationController
       redirect_to :back
     else
       flash[:error] = "Issue type is not updated!"
-      redirect_to :back
+      #redirect_to :back
     end
   end
 

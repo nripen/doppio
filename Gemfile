@@ -33,6 +33,8 @@ end
 
 group :development do
 	gem 'annotate', '2.5.0'
+	gem 'pry'
+	gem 'pry-rails'
 end
 
 group :production do

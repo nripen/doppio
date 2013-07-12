@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   
   has_many :project_user_associations
-  has_many :projects, through: :project_user_associations
+  has_many :projects, through: :project_user_associations, dependent: :destroy
 
 
 
